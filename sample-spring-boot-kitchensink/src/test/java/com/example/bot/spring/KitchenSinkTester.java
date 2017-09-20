@@ -49,7 +49,7 @@ import com.example.bot.spring.DatabaseEngine;
 @SpringBootTest(classes = { KitchenSinkTester.class, DatabaseEngine.class })
 public class KitchenSinkTester {
 	@Autowired
-	private DatabaseEngine databaseEngine;
+	private DatabaseEngine databaseEngine = new DatabaseEngine();
 	
 	@Test
 	public void testNotFound() throws Exception {
@@ -73,5 +73,16 @@ public class KitchenSinkTester {
 		}
 		assertThat(!thrown).isEqualTo(true);
 		assertThat(result).isEqualTo("def");
+	}
+	
+	@Test
+	public void findSomething() throws Exception {
+		boolean thrown = false;
+		try {
+			this.databaseEngine.search("I am fine");
+		} catch (Exception e) {
+			thrown = true;
+		}
+		assertThat(!thrown).isEqualTo(true);
 	}
 }
