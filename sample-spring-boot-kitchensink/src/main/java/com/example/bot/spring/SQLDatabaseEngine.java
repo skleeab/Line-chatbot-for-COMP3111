@@ -12,6 +12,7 @@ public class SQLDatabaseEngine extends DatabaseEngine {
 	@Override
 	String search(String text) throws Exception {
 		//Write your code here
+		String result = null;
 		Connection connection = getConnection();
 				PreparedStatement stmt = connection.prepareStatement(
 				"SELECT response FROM chatbotreply where keyword=?");
@@ -24,7 +25,10 @@ public class SQLDatabaseEngine extends DatabaseEngine {
 				            rs.close();
 				            stmt.close();
 				            connection.close();
-				return text;
+				            
+				       if (result != null)
+				    			return result;
+				    		throw new Exception("NOT FOUND");
 	}
 	
 
