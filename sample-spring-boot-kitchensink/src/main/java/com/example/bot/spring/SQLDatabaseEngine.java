@@ -17,18 +17,20 @@ public class SQLDatabaseEngine extends DatabaseEngine {
 				PreparedStatement stmt = connection.prepareStatement(
 				"SELECT response FROM chatbotreply where keyword=?");
 				stmt.setString(1,text); //or some other variables
+				String ans=null;
 				ResultSet rs = stmt.executeQuery();
 				while (rs.next()) {
-				return rs.getString(1);
+				ans=rs.getString(1);
 				            }
 				
 				            rs.close();
 				            stmt.close();
 				            connection.close();
+				          
+				            if (ans!=null)
+				            	return ans;
 				            
-				       if (result != null)
-				    			return result;
-				    		throw new Exception("NOT FOUND");
+				   throw new Exception("NOT FOUND");
 	}
 	
 
