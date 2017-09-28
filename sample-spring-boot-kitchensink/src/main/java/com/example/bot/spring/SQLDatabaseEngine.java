@@ -24,7 +24,7 @@ public class SQLDatabaseEngine extends DatabaseEngine {
 				            rs.close();
 				            stmt.close();
 				            connection.close();
-				return null;
+				return text;
 	}
 	
 
